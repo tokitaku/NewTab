@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { LinkButton } from '@/components/LinkButton'
 import { Clock } from '@/components/Clock'
 import { useTime } from '@/useTime'
+import { getUrl } from '@/utils/config'
 
 export default function Home() {
   const searchGoogle = (event: any) => {
@@ -12,6 +13,8 @@ export default function Home() {
   };
   const time = useTime(1000);
 
+  const bg = getUrl("/images/magenta-cat.png");
+
   const [query, setQuery] = useState("");
   return (
     <>
@@ -19,9 +22,9 @@ export default function Home() {
         <title>New Tab</title>
         <meta name="description" content="New Tab Page" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/images/iconmonstr-plus.png" />
+        <link rel="icon" href={getUrl("/images/iconmonstr-plus.png")} />
       </Head>
-      <main className={styles.main}>
+      <main style={{backgroundImage: `url(${bg})`, width: "auto", height: "100"}} className={styles.main}>
         <Clock time={time}/>
         <form className={styles.searchForm} onSubmit={searchGoogle}>
           <input onChange={(event) => setQuery(event.target.value)} value={query} className={styles.searchInput} id="searchInput" placeholder="Search Google"></input>

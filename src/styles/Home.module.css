@@ -1,6 +1,4 @@
 .main {
-  background-image: url("/images/magenta-cat.png");
-  background-size: 100% auto;
   background-color: #1e1e2e;
   display: flex;
   flex-direction: column;

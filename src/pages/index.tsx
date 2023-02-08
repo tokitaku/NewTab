@@ -24,7 +24,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={getUrl("/images/iconmonstr-plus.png")} />
       </Head>
-      <main style={{backgroundImage: `url(${bg})`, width: "auto", height: "100"}} className={styles.main}>
+      <main style={{backgroundImage: `url(${bg})`, backgroundSize:'100% auto'}} className={styles.main}>
         <Clock time={time}/>
         <form className={styles.searchForm} onSubmit={searchGoogle}>
           <input onChange={(event) => setQuery(event.target.value)} value={query} className={styles.searchInput} id="searchInput" placeholder="Search Google"></input>

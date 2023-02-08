@@ -13,7 +13,7 @@ export default function Home() {
   };
   const time = useTime(1000);
 
-  const bg = getUrl("/images/magenta-cat.png");
+  const bg = getUrl("/images/mauve-cat.png");
 
   const [query, setQuery] = useState("");
   return (

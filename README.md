@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Summary
+[This static page](https://uugtech.github.io/NewTab) created by [Next.js](https://nextjs.org/) is intended to replace chrome's new tab page.
+This is because [vimium](https://github.com/philc/vimium), a wonderful chrome extension, does not work on the __new tab page__.
+- The page opened by `t` in vimium can be set to this page in the vimium settings.
+- The page that opens when chrome starts up can also be changed to this page from the chrome settings.
+
+This will allow you to live a comfortable vimium life!
+
+This page uses [Catppuccin Theme](https://github.com/catppuccin/catppuccin), a fantastic color theme, and its wallpaper.
+
 ## Getting Started
 
 First, run the development server:
@@ -16,11 +26,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
@@ -31,8 +36,17 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Export
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You can export by running following command.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run build
+```
+
+And you can run the exported app by running the following command.
+
+```bash
+npm run serve
+```
+

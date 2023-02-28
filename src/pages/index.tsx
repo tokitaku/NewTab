@@ -9,7 +9,7 @@ import { getUrl } from '@/utils/config'
 export default function Home() {
   const searchGoogle = (event: any) => {
     event.preventDefault();
-    document.location.href="https://www.google.com/search?q="+query;
+    document.location.href="https://www.google.com/search?q="+encodeURIComponent(query);
   };
   const time = useTime(1000);
 

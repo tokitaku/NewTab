@@ -30,6 +30,7 @@ export default function Home() {
           <input onChange={(event) => setQuery(event.target.value)} value={query} className={styles.searchInput} id="searchInput" placeholder="Search Google"></input>
         </form>
         <div className={styles.bookmarks}>
+          <LinkButton label="Google" name="google" url="https://www.google.com/" />
           <LinkButton label="GitHub" name="github" url="https://github.com/" />
           <LinkButton label="YouTube" name="youtube" url="https://youtube.com/" />
           <LinkButton label="Amazon" name="amazon" url="https://amazon.com/" />

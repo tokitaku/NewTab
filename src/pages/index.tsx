@@ -9,11 +9,12 @@ import { getUrl } from '@/utils/config'
 export default function Home() {
   const searchGoogle = (event: any) => {
     event.preventDefault();
-    document.location.href="https://www.google.com/search?q="+encodeURIComponent(query);
+    document.location.href =
+      "https://www.google.com/search?q=" + encodeURIComponent(query);
   };
   const time = useTime(1000);
 
-  const bg = getUrl("/images/mauve-cat.png");
+  const bg = getUrl("/images/bg-img.jpg");
 
   const [query, setQuery] = useState("");
   return (
@@ -38,7 +39,7 @@ export default function Home() {
             placeholder="Search Google"
           ></input>
         </form>
-        <div className={styles.bookmarks}>
+        {/* <div className={styles.bookmarks}>
           <LinkButton label="GitHub" name="github" url="https://github.com/" />
           <LinkButton
             label="YouTube"
@@ -51,7 +52,7 @@ export default function Home() {
             name="twitter"
             url="https://twitter.com/home"
           />
-        </div>
+        </div> */}
       </main>
     </>
   );

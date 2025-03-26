@@ -1,5 +1,5 @@
 .main {
-  background-color: #1e1e2e;
+  background-color: #c6c6c6;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,17 +16,18 @@
 }
 
 .searchInput {
-  background-color: #1e1e2e;
+  background-color: #202028;
   color: #cdd6f4;
   font-size: 22px;
   padding: 8px;
   width: 100%;
-  outline: 2px solid #cdd6f4;
-  border-radius: 6px;
+  outline: 1px solid #cdd6f4;
+  border-radius: 2px;
 }
 
 .searchInput:focus {
-  outline: 5px solid #f38ba8;
+  outline: 2px solid #f38ba8;
+  transition: outline 0.5s ease;
 }
 
 .bookmarks {
@@ -46,14 +47,14 @@
 }
 
 .timeStr {
-  color: #1e1e2e;
-  font-size: 32px;
+  color: #d6d6d8;
+  font-size: 50px;
   text-align: center;
 }
 
 .dateStr {
-  color: #1e1e2e;
-  font-size: 18px;
+  color: #d6d6d8;
+  font-size: 32px;
   text-align: center;
 }
 

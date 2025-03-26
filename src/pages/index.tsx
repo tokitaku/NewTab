@@ -24,19 +24,35 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={getUrl("/images/iconmonstr-plus.png")} />
       </Head>
-      <main style={{backgroundImage: `url(${bg})`, backgroundSize:'100% auto'}} className={styles.main}>
-        <Clock time={time}/>
+      <main
+        style={{ backgroundImage: `url(${bg})`, backgroundSize: "100% auto" }}
+        className={styles.main}
+      >
+        <Clock time={time} />
         <form className={styles.searchForm} onSubmit={searchGoogle}>
-          <input onChange={(event) => setQuery(event.target.value)} value={query} className={styles.searchInput} id="searchInput" placeholder="Search Google"></input>
+          <input
+            onChange={(event) => setQuery(event.target.value)}
+            value={query}
+            className={styles.searchInput}
+            id="searchInput"
+            placeholder="Search Google"
+          ></input>
         </form>
         <div className={styles.bookmarks}>
-          <LinkButton label="Google" name="google" url="https://www.google.com/" />
           <LinkButton label="GitHub" name="github" url="https://github.com/" />
-          <LinkButton label="YouTube" name="youtube" url="https://youtube.com/" />
+          <LinkButton
+            label="YouTube"
+            name="youtube"
+            url="https://youtube.com/"
+          />
           <LinkButton label="Amazon" name="amazon" url="https://amazon.com/" />
-          <LinkButton label="Twitter" name="twitter" url="https://twitter.com/home" />
+          <LinkButton
+            label="Twitter"
+            name="twitter"
+            url="https://twitter.com/home"
+          />
         </div>
       </main>
     </>
-  )
+  );
 }

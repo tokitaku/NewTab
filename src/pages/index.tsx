@@ -1,17 +1,34 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useState } from 'react'
-import { LinkButton } from '@/components/LinkButton'
-import { Clock } from '@/components/Clock'
-import { useTime } from '@/useTime'
-import { getUrl } from '@/utils/config'
+import { useState, useEffect } from "react";
+// import { LinkButton } from "@/components/LinkButton";
+import { Clock } from "@/components/Clock";
+import { useTime } from "@/useTime";
+import { getUrl } from "@/utils/config";
+import type { Task } from "@/lib/linear";
+import { fetchUserId, fetchAssignedTasks } from "@/lib/linear";
 
 export default function Home() {
+  const [tasks, setTasks] = useState<Task[]>([]);
   const searchGoogle = (event: any) => {
     event.preventDefault();
     document.location.href =
       "https://www.google.com/search?q=" + encodeURIComponent(query);
   };
+  useEffect(() => {
+    const loadTasks = async () => {
+      try {
+        const userId = await fetchUserId();
+        const assignedTasks = await fetchAssignedTasks(userId);
+        setTasks(assignedTasks);
+      } catch (error) {
+        console.error("タスクの取得に失敗しました", error);
+      }
+    };
+
+    loadTasks();
+  }, []);
+
   const time = useTime(1000);
 
   const bg = getUrl("/images/bg-img.jpg");
@@ -39,20 +56,30 @@ export default function Home() {
             placeholder="Search Google"
           ></input>
         </form>
-        {/* <div className={styles.bookmarks}>
-          <LinkButton label="GitHub" name="github" url="https://github.com/" />
-          <LinkButton
-            label="YouTube"
-            name="youtube"
-            url="https://youtube.com/"
-          />
-          <LinkButton label="Amazon" name="amazon" url="https://amazon.com/" />
-          <LinkButton
-            label="Twitter"
-            name="twitter"
-            url="https://twitter.com/home"
-          />
-        </div> */}
+        <div className={styles.taskList}>
+          <h2 className={styles.taskListTitle}>My Linear Tasks</h2>
+          {tasks.length === 0 && <p>No tasks assigned!</p>}
+          <ul className={styles.taskList}>
+            {tasks.map((task, index) => (
+              <li key={index} className={styles.taskItem}>
+                <a href={task.url} target="_blank" rel="noopener noreferrer">
+                  <span
+                    className={styles.taskStatus}
+                    style={{
+                      backgroundColor:
+                        task.state.name === "In Progress"
+                          ? "#f59e0b"
+                          : "#10b981",
+                    }}
+                  >
+                    {task.state.name}
+                  </span>
+                  <span className={styles.taskTitle}>{task.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </main>
     </>
   );

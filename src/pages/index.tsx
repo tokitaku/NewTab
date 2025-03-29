@@ -9,7 +9,10 @@ import type { Task } from "@/lib/linear";
 import { fetchUserId, fetchTasks } from "@/lib/linear";
 
 export default function Home() {
+  const time = useTime(1000);
+
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
   const searchGoogle = (event: any) => {
     event.preventDefault();
     document.location.href =
@@ -23,13 +26,13 @@ export default function Home() {
         setTasks(assignedTasks);
       } catch (error) {
         console.error("タスクの取得に失敗しました", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     loadTasks();
   }, []);
-
-  const time = useTime(1000);
 
   const bg = getUrl("/images/bg-img.jpg");
 
@@ -58,27 +61,32 @@ export default function Home() {
         </form>
         <div className={styles.taskContainer}>
           <h2 className={styles.taskListTitle}>My Linear Tasks</h2>
-          {tasks.length === 0 && <p>No tasks assigned!</p>}
-          <ul className={styles.taskList}>
-            {tasks.map((task) => (
-              <li key={task.id} className={styles.taskItem}>
-                <a href={task.url} target="_blank" rel="noopener noreferrer">
-                  <span
-                    className={styles.taskStatus}
-                    style={{
-                      backgroundColor:
-                        task.state.name === "In Progress"
-                          ? "#f59e0b"
-                          : "#10b981",
-                    }}
-                  >
-                    {task.state.name}
-                  </span>
-                  <span className={styles.taskTitle}>{task.title}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          {loading ? (
+            <p className={styles.loading}>Loading...</p>
+          ) : tasks.length === 0 ? (
+            <p>No tasks assigned!</p>
+          ) : (
+            <ul className={styles.taskList}>
+              {tasks.map((task) => (
+                <li key={task.id} className={styles.taskItem}>
+                  <a href={task.url} target="_blank" rel="noopener noreferrer">
+                    <span
+                      className={styles.taskStatus}
+                      style={{
+                        backgroundColor:
+                          task.state.name === "In Progress"
+                            ? "#f59e0b"
+                            : "#10b981",
+                      }}
+                    >
+                      {task.state.name}
+                    </span>
+                    <span className={styles.taskTitle}>{task.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </main>
     </>

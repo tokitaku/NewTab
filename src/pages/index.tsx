@@ -6,7 +6,7 @@ import { Clock } from "@/components/Clock";
 import { useTime } from "@/useTime";
 import { getUrl } from "@/utils/config";
 import type { Task } from "@/lib/linear";
-import { fetchUserId, fetchAssignedTasks } from "@/lib/linear";
+import { fetchUserId, fetchTasks } from "@/lib/linear";
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -19,7 +19,7 @@ export default function Home() {
     const loadTasks = async () => {
       try {
         const userId = await fetchUserId();
-        const assignedTasks = await fetchAssignedTasks(userId);
+        const assignedTasks = await fetchTasks(userId);
         setTasks(assignedTasks);
       } catch (error) {
         console.error("タスクの取得に失敗しました", error);

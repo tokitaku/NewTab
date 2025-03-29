@@ -59,6 +59,15 @@
 }
 
 /* Task List */
+
+.taskContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .taskList {
   list-style: none;
   padding: 0;
@@ -78,7 +87,7 @@
 .taskItem:hover {
   color: #f38ba8;
   transform: scale(1.05);
-  transition: color, transform 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .taskStatus {
@@ -87,11 +96,6 @@
   color: #cdd6f4;
   padding: 5px;
   border-radius: 10px;
-}
-
-.taskStatus:hover {
-  color: #f38ba8;
-  transition: color 0.5s ease;
 }
 
 .taskTitle {

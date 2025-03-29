@@ -56,12 +56,12 @@ export default function Home() {
             placeholder="Search Google"
           ></input>
         </form>
-        <div className={styles.taskList}>
+        <div className={styles.taskContainer}>
           <h2 className={styles.taskListTitle}>My Linear Tasks</h2>
           {tasks.length === 0 && <p>No tasks assigned!</p>}
           <ul className={styles.taskList}>
-            {tasks.map((task, index) => (
-              <li key={index} className={styles.taskItem}>
+            {tasks.map((task) => (
+              <li key={task.id} className={styles.taskItem}>
                 <a href={task.url} target="_blank" rel="noopener noreferrer">
                   <span
                     className={styles.taskStatus}

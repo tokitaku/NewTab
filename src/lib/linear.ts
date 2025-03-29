@@ -8,7 +8,6 @@ interface LinearUser {
 export interface Task {
   id: string;
   title: string;
-  description: string;
   url: string;
   state: {
     name: string;
@@ -21,33 +20,32 @@ export interface Task {
 const LINEAR_API_URL = "https://api.linear.app/graphql";
 
 export const fetchUserId = async (): Promise<string> => {
-  const response = await fetch(LINEAR_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: process.env.NEXT_PUBLIC_LINEAR_API_KEY as string,
-    },
-    body: JSON.stringify({
-      query: `
-          query {
-            viewer {
-              id
-              name
+  try {
+    const response = await fetch(LINEAR_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: process.env.NEXT_PUBLIC_LINEAR_API_KEY as string,
+      },
+      body: JSON.stringify({
+        query: `
+            query {
+              viewer {
+                id
+                name
+              }
             }
-          }
-        `,
-    }),
-  });
+          `,
+      }),
+    });
+    const { data } = await response.json();
+    const user: LinearUser = data.viewer;
 
-  const { data } = await response.json();
-
-  if (!data?.viewer) {
-    throw new Error("ユーザー情報が取得できませんでした。");
+    return user.id;
+  } catch (error) {
+    console.error("ユーザー情報の取得に失敗しました。", error);
+    throw error;
   }
-
-  const user: LinearUser = data.viewer;
-
-  return user.id;
 };
 
 export const fetchAssignedTasks = async (userId: string): Promise<Task[]> => {
@@ -55,7 +53,9 @@ export const fetchAssignedTasks = async (userId: string): Promise<Task[]> => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: process.env.NEXT_PUBLIC_LINEAR_API_KEY as string,
+      Authorization: process.env.NEXT_PUBLIC_LINEAR_API_KEY
+        ? (process.env.NEXT_PUBLIC_LINEAR_API_KEY as string)
+        : "",
     },
     body: JSON.stringify({
       query: `
@@ -66,6 +66,7 @@ export const fetchAssignedTasks = async (userId: string): Promise<Task[]> => {
 
             }) {
               nodes {
+                id
                 title
                 state {
                   name
@@ -79,6 +80,7 @@ export const fetchAssignedTasks = async (userId: string): Promise<Task[]> => {
   });
 
   const { data } = await response.json();
+  console.log(data);
 
   if (!data?.issues?.nodes) {
     throw new Error("タスク情報が取得できませんでした。");

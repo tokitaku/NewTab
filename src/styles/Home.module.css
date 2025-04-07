@@ -6,13 +6,22 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .searchForm {
   width: 80%;
+  max-width: 600px;
   display: flex;
   flex-direction: row;
   margin-top: 20px;
+  position: absolute;
+  top: 210px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 .searchInput {

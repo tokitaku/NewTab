@@ -46,7 +46,9 @@ export default function Home() {
         <link rel="icon" href={getUrl("/images/iconmonstr-plus.png")} />
       </Head>
       <main
-        style={{ backgroundImage: `url(${bg})`, backgroundSize: "100% auto" }}
+        style={{
+          backgroundImage: `url(${bg})`,
+        }}
         className={styles.main}
       >
         <Clock time={time} />

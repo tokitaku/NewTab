@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import { useState, useEffect } from "react";
 // import { LinkButton } from "@/components/LinkButton";
 import { Clock } from "@/components/Clock";
+import { PomodoroTimer } from "@/components/PomodoroTimer";
 import { useTime } from "@/useTime";
 import { getUrl } from "@/utils/config";
 import type { Task } from "@/lib/linear";
@@ -61,6 +62,7 @@ export default function Home() {
             placeholder="Search Google"
           ></input>
         </form>
+        <PomodoroTimer />
         <div className={styles.taskContainer}>
           <h2 className={styles.taskListTitle}>My Linear Tasks</h2>
           {loading ? (

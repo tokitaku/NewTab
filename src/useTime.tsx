@@ -4,11 +4,11 @@ export const useTime = (interval: number) => {
   const [time, updateTime] = useState(Date.now());
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => updateTime(Date.now()), interval)
+    const intervalId = setInterval(() => updateTime(Date.now()), interval)
     return () => {
-      clearTimeout(timeoutId)
+      clearInterval(intervalId)
     }
-  }, [time]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [interval]);
 
   return time;
 }

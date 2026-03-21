@@ -64,9 +64,9 @@ export const fetchTasks = async (userId: string): Promise<Task[]> => {
       },
       body: JSON.stringify({
         query: `
-          query {
+          query Tasks($userId: String!) {
             issues(filter: { 
-              assignee: { id: { eq: "${userId}" } },
+              assignee: { id: { eq: $userId } },
               state: { 
                 name: { 
                   in: ["In Progress", "Todo", "In Review"]
@@ -84,6 +84,9 @@ export const fetchTasks = async (userId: string): Promise<Task[]> => {
             }
           }
         `,
+        variables: {
+          userId,
+        },
       }),
     });
 

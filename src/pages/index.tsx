@@ -3,14 +3,11 @@ import styles from '../styles/Home.module.css'
 import { useState, useEffect } from "react";
 // import { LinkButton } from "@/components/LinkButton";
 import { Clock } from "@/components/Clock";
-import { useTime } from "@/useTime";
 import { getUrl } from "@/utils/config";
 import type { Task } from "@/lib/linear";
 import { fetchUserId, fetchTasks } from "@/lib/linear";
 
 export default function Home() {
-  const time = useTime(1000);
-
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const searchGoogle = (event: any) => {
@@ -51,7 +48,7 @@ export default function Home() {
         }}
         className={styles.main}
       >
-        <Clock time={time} />
+        <Clock />
         <form className={styles.searchForm} onSubmit={searchGoogle}>
           <input
             onChange={(event) => setQuery(event.target.value)}

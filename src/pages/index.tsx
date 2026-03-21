@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from "react";
-// import { LinkButton } from "@/components/LinkButton";
 import { Clock } from "@/components/Clock";
 import { useTime } from "@/useTime";
 import { getUrl } from "@/utils/config";

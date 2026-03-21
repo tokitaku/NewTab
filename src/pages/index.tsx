@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 // import { LinkButton } from "@/components/LinkButton";
 import { Clock } from "@/components/Clock";
 import { useTime } from "@/useTime";
@@ -13,7 +13,7 @@ export default function Home() {
 
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
-  const searchGoogle = (event: any) => {
+  const searchGoogle = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     document.location.href =
       "https://www.google.com/search?q=" + encodeURIComponent(query);

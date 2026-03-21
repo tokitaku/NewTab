@@ -30,7 +30,7 @@ export const fetchUserId = async (): Promise<string> => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: process.env.NEXT_PUBLIC_LINEAR_API_KEY as string,
+        Authorization: process.env.LINEAR_API_KEY as string,
       },
       body: JSON.stringify({
         query: `
@@ -60,7 +60,7 @@ export const fetchTasks = async (userId: string): Promise<Task[]> => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: process.env.NEXT_PUBLIC_LINEAR_API_KEY as string,
+        Authorization: process.env.LINEAR_API_KEY as string,
       },
       body: JSON.stringify({
         query: `

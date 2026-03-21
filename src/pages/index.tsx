@@ -6,7 +6,6 @@ import { Clock } from "@/components/Clock";
 import { useTime } from "@/useTime";
 import { getUrl } from "@/utils/config";
 import type { Task } from "@/lib/linear";
-import { fetchUserId, fetchTasks } from "@/lib/linear";
 
 export default function Home() {
   const time = useTime(1000);
@@ -21,8 +20,11 @@ export default function Home() {
   useEffect(() => {
     const loadTasks = async () => {
       try {
-        const userId = await fetchUserId();
-        const assignedTasks = await fetchTasks(userId);
+        const response = await fetch("/api/tasks");
+        if (!response.ok) {
+          throw new Error("Failed to fetch tasks");
+        }
+        const assignedTasks = await response.json();
         setTasks(assignedTasks);
       } catch (error) {
         console.error("タスクの取得に失敗しました", error);

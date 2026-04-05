@@ -1,10 +1,7 @@
 import React from "react";
 import styles from '@/styles/Home.module.css'
 import dayjs from "dayjs";
-
-interface Props {
-    time: number
-};
+import { useTime } from "@/useTime";
 
 function toDateStr(date: string): string {
     if (date.endsWith("1")) {
@@ -44,7 +41,8 @@ function getDateStr(month: number, date: string): string {
     return toDateStr(date)+"/"+toMonthStr(month);
 }
 
-export const Clock: React.FC<Props> = ({time}) => {
+export const Clock: React.FC = () => {
+    const time = useTime(1000);
     const timeStr = dayjs(time).format("HH:mm:ss");
     const month = dayjs(time).month();
     const date = dayjs(time).format("DD");

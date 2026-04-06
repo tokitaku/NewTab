@@ -2,8 +2,9 @@
   background-color: #c6c6c6;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: relative;
   padding: 6rem;
   min-height: 100vh;
   background-size: cover;
@@ -11,32 +12,17 @@
   background-position: center;
 }
 
-.searchForm {
-  width: 80%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
+.timerAnchor {
   position: absolute;
-  top: 210px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
+  top: 24px;
+  right: 24px;
 }
 
-.searchInput {
-  background-color: #202028;
-  color: #cdd6f4;
-  font-size: 22px;
-  padding: 8px;
-  width: 100%;
-  outline: 1px solid #cdd6f4;
-  border-radius: 2px;
-}
-
-.searchInput:focus {
-  outline: 2px solid #f38ba8;
-  transition: outline 0.5s ease;
+.heroStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 }
 
 .bookmarks {
@@ -73,7 +59,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
   background-color: rgba(32, 32, 40, 0.8);
   padding: 20px;
   border-radius: 10px;

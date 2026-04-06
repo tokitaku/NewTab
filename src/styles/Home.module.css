@@ -1,42 +1,32 @@
 .main {
   background-color: #c6c6c6;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
   min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.searchForm {
-  width: 80%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
+.clockSlot {
   position: absolute;
-  top: 210px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
+  top: 2rem;
+  right: 2rem;
+  z-index: 2;
 }
 
-.searchInput {
-  background-color: #202028;
-  color: #cdd6f4;
-  font-size: 22px;
-  padding: 8px;
-  width: 100%;
-  outline: 1px solid #cdd6f4;
-  border-radius: 2px;
+.timerSlot {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0;
+  transform: translateY(-15rem);
 }
 
-.searchInput:focus {
-  outline: 2px solid #f38ba8;
-  transition: outline 0.5s ease;
+.clock {
+  text-align: right;
 }
 
 .bookmarks {
@@ -73,7 +63,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
   background-color: rgba(32, 32, 40, 0.8);
   padding: 20px;
   border-radius: 10px;
@@ -127,4 +116,31 @@
 
 .controlButton:hover {
   background-color: #b4befe;
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 1.25rem;
+  }
+
+  .clockSlot {
+    top: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .timeStr {
+    font-size: 40px;
+  }
+
+  .dateStr {
+    font-size: 24px;
+  }
+
+  .pomodoroContainer {
+    width: min(300px, calc(100vw - 2.5rem));
+  }
+
+  .timerSlot {
+    transform: translateY(-15rem);
+  }
 }

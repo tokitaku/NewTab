@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import { useState, FormEvent } from "react";
 // import { LinkButton } from "@/components/LinkButton";
 import { Clock } from "@/components/Clock";
+import { PomodoroTimer } from "@/components/PomodoroTimer";
 import { getUrl } from "@/utils/config";
 
 export default function Home() {
@@ -39,6 +40,7 @@ export default function Home() {
             placeholder="Search Google"
           ></input>
         </form>
+        <PomodoroTimer />
       </main>
     </>
   );

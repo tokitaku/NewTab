@@ -2,7 +2,6 @@
   background-color: #c6c6c6;
   position: relative;
   overflow: hidden;
-  padding: 2rem;
   min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
@@ -119,10 +118,6 @@
 }
 
 @media (max-width: 640px) {
-  .main {
-    padding: 1.25rem;
-  }
-
   .clockSlot {
     top: 1.25rem;
     right: 1.25rem;
@@ -137,7 +132,7 @@
   }
 
   .pomodoroContainer {
-    width: min(300px, calc(100vw - 2.5rem));
+    width: min(300px, calc(100vw - 2rem));
   }
 
   .timerSlot {

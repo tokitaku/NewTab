@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import { getUrl } from "@/utils/config";
 import styles from "@/styles/Home.module.css";
 
 export const PomodoroTimer: React.FC = () => {
@@ -15,6 +16,8 @@ export const PomodoroTimer: React.FC = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined" && "Notification" in window) {
+      // Read browser-only permission after mounting to preserve static rendering.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPermission(Notification.permission);
     }
   }, []);
@@ -70,7 +73,7 @@ export const PomodoroTimer: React.FC = () => {
     if (permission === "granted") {
       new Notification("Time's up!", {
         body: mode === "work" ? "Take a break!" : "Time to work!",
-        icon: "/images/iconmonstr-plus.png", // Assuming this exists based on index.tsx
+        icon: getUrl("/images/iconmonstr-plus.png"),
       });
     }
     playNotificationSound();
@@ -84,6 +87,8 @@ export const PomodoroTimer: React.FC = () => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
     } else if (timeLeft === 0) {
+      // Stop the timer when the external interval reaches zero.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsActive(false);
       showNotification();
     }

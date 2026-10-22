@@ -19,7 +19,7 @@ When making changes, optimize for:
 - `src/components/LinkButton.tsx`: link button UI component; confirm it is still needed before expanding its usage
 - `src/styles/`: global styles and page-level CSS modules
 - `src/useTime.tsx`: small client-side hook used by the clock
-- `src/utils/config.ts`: `getUrl(...)` helper that reads `publicRuntimeConfig.urlPrefix` for prefixed asset paths
+- `src/utils/config.ts`: `getUrl(...)` helper that reads the build-time `NEXT_PUBLIC_URL_PREFIX` for prefixed asset paths
 - `public/images/`: source image assets
 - `public/favicon.ico`: favicon asset, though the main page currently points at an image-based icon path via `getUrl(...)`
 - `out/`: generated static export output
@@ -29,7 +29,7 @@ When making changes, optimize for:
 - Prefer small, local edits over large refactors.
 - Follow existing Next.js Pages Router patterns used in `src/pages/`.
 - Keep browser-side behavior simple; this project is primarily a static client page.
-- Preserve compatibility with `basePath`, `assetPrefix`, and `publicRuntimeConfig.urlPrefix` from `next.config.js`.
+- Preserve compatibility with `basePath`, `assetPrefix`, and `env.NEXT_PUBLIC_URL_PREFIX` from `next.config.js`.
 - When referencing static assets in page code, prefer the existing `getUrl(...)` helper rather than hardcoding deployment-specific paths.
 - Be careful with browser-only APIs such as `Notification`, `AudioContext`, and `document.location`; keep SSR/static export behavior safe.
 
@@ -45,9 +45,9 @@ When making changes, optimize for:
 - `npm run dev`: start local development server
 - `npm run lint`: run lint checks
 - `npm run build`: build and export the static site
-- `npm run export`: export the already-built app
+- `npm run export`: build and export the static site (alias for build)
 - `npm run serve`: build and serve the exported `out/` directory
-- `npm run start`: run the Next.js production server; useful for Next itself, but deployment here targets static export
+- `npm run start`: legacy Next.js server command; use `npm run serve` for the static export
 
 ## Validation
 
@@ -73,7 +73,7 @@ If the change affects asset paths, deployment paths, or exported output behavior
 
 ## Notes For Agents
 
-- This project currently uses Next.js `13.1.x` with the Pages Router, not the App Router.
-- Static export matters here; avoid features that require a server runtime.
-- `URL_PREFIX` is wired through `next.config.js` into `basePath`, `assetPrefix`, and `publicRuntimeConfig.urlPrefix`.
+- This project currently uses Next.js `16.x` with the Pages Router, not the App Router.
+- Static export matters here; `output: 'export'` makes `next build` export automatically. Avoid features that require a server runtime.
+- `URL_PREFIX` is wired through `next.config.js` into `basePath`, `assetPrefix`, and `env.NEXT_PUBLIC_URL_PREFIX`.
 - Check whether a path-related change also needs to work under `URL_PREFIX`, especially for favicon, background, and notification/icon asset references.

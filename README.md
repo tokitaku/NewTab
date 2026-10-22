@@ -12,6 +12,13 @@ This page uses [Catppuccin Theme](https://github.com/catppuccin/catppuccin), a f
 
 ## Getting Started
 
+Use Node.js 24 LTS (`.nvmrc`), then install the locked dependencies:
+
+```bash
+nvm use
+npm ci
+```
+
 First, run the development server:
 
 ```bash
@@ -37,6 +44,11 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Export
+
+`npm run build` creates the static export in `out/`. For GitHub Pages, run
+`URL_PREFIX=NewTab npm run build`; the prefix applies to scripts, background,
+favicon, and notification icon paths. `npm run export` is an alias that rebuilds
+the export (there is no separate `next export` step in Next.js 16).
 
 You can export by running following command.
 

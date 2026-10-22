@@ -1,8 +1,3 @@
-import getConfig from 'next/config'
-
 export function getUrl(filename: string): string {
-  const { publicRuntimeConfig } = getConfig() as {
-    publicRuntimeConfig: { urlPrefix: string }
-  }
-  return publicRuntimeConfig.urlPrefix + filename
+  return (process.env.NEXT_PUBLIC_URL_PREFIX ?? '') + filename
 }

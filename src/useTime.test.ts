@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
 import * as react from 'react';
-import { useTime } from './useTime.ts';
+import { useTime } from './useTime';
 
 // The 'react' module is mocked in node_modules/react/index.js
 const reactMock = react as any;

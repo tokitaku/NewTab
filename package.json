@@ -24,7 +24,7 @@
     "eslint": "10.13.0",
     "eslint-config-next": "16.4.2",
     "serve": "^14.2.6",
-    "typescript": "~5.9.3"
+    "typescript": "~7.0.2"
   },
   "engines": {
     "node": "^22.23.4 || >=24.22.1 <25"

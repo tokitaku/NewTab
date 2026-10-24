@@ -7,21 +7,21 @@ package versions; use `npm ci` to reproduce them.
 ## Checks
 
 - `npm audit`: includes development tools and reports all known findings.
-- `npm audit --omit=dev --audit-level=low`: CI gate for production dependencies.
+- `npm audit --include=dev --audit-level=low`: CI gate for production and development dependencies.
 - `npm run lint` and `npm run build`: lint, type checking, and static export.
 - CI checks both an empty `URL_PREFIX` and `URL_PREFIX=NewTab`.
 
-## Known development-only finding (2026-10-22)
+## Audit status (2026-10-25)
 
-[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
-affects `braces` through 3.0.3. No patched release is available. It is brought
-in by `eslint-config-next -> @next/eslint-plugin-next -> fast-glob ->
-micromatch -> braces`. npm audit counts this single advisory across five
-packages, all development-only. Deeply nested attacker-controlled glob
-patterns can terminate a Node.js process. The lint configuration uses local
-repository paths; these tools are not shipped in the static browser bundle.
-Do not feed untrusted patterns to this lint toolchain. Review the full audit
-when upgrading and remove this note when the upstream fix is available.
+Both `npm audit` and `npm audit --package-lock-only` report zero known
+vulnerabilities, including development dependencies.
+
+The previously reported [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
+for `braces` was withdrawn on 2026-10-23 because it is not practically
+exploitable. Its five propagated npm audit findings are no longer reported.
+`braces@3.0.3` remains in the lint dependency tree; no dependency override or
+rule removal was needed to clear these findings. CI now audits development
+dependencies as well as production dependencies.
 
 `compression` is overridden to `^1.8.2` because `serve@14.2.6` pins the
 vulnerable 1.8.1 release. Remove the override once `serve` includes the fix.

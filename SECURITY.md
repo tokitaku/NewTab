@@ -11,6 +11,33 @@ package versions; use `npm ci` to reproduce them.
 - `npm run lint` and `npm run build`: lint, type checking, and static export.
 - CI checks both an empty `URL_PREFIX` and `URL_PREFIX=NewTab`.
 
+## Next.js security update (2026-11-03)
+
+Next.js and `eslint-config-next` are pinned to 16.4.5, with matching resolved
+dependencies in `package-lock.json`. The [official 16.4.5 release](https://github.com/vercel/next.js/releases/tag/v16.4.5)
+lists seven security fixes covering server caches, forwarded responses, image
+optimization, and Edge runtime response headers. Some linked advisories still
+list no patched version; the release announcement explicitly includes the fixes.
+
+This app uses the Pages Router with `output: 'export'`. The GitHub Pages workflow
+publishes only `out/`; it does not run a Next.js server. There are no App Router
+cache functions, API routes, Edge routes, or uses of the default `next/image`
+optimizer in the app. The server-side exploitation conditions described in these
+advisories are therefore absent from this static deployment. This assessment does
+not cover a separately exposed development server or a future server deployment.
+Keep the dependency update even though the current static site does not expose
+the affected server functionality.
+
+Validation on Node.js 24.22.1: `npm ci`, lint, and static builds with both URL
+prefixes passed. Lint retains one existing `@next/next/no-img-element` warning.
+`npm audit --include=dev --audit-level=low` currently fails with 17 moderate
+findings propagated from [minimatch GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249)
+in the development tooling, including ESLint and `serve`. This is separate from
+the Next.js fixes and still blocks the audit CI gate. npm proposes a breaking
+ESLint downgrade; no forced audit fix or broad dependency changes were applied.
+The lockfile-only audit reports the same 17 moderate findings; the production-only
+audit (`npm audit --omit=dev --audit-level=low`) reports zero vulnerabilities.
+
 ## Audit status (2026-10-25)
 
 Both `npm audit` and `npm audit --package-lock-only` report zero known
